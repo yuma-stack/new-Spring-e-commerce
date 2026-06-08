@@ -1,11 +1,11 @@
-package co.istad.sokkeang.mapper;
+package co.istad.sokkeang.ecommerce.mapper;
 
 import co.istad.sokkeang.ecommerce.domain.Category;
 
 import co.istad.sokkeang.ecommerce.dto.CategoryResponse;
 import co.istad.sokkeang.ecommerce.dto.CreateCategoryRequest;
 import org.mapstruct.Mapper;
-
+import org.mapstruct.Mapping;
 
 
 @Mapper(componentModel = "spring")
@@ -14,8 +14,11 @@ public interface CategoryMapper {
     //return type = target
     //parameter = source
 
+
+
     Category mapCreateCategoryRequestToCategory(CreateCategoryRequest createCategoryRequest);
 
+    @Mapping(source = "parentCategory.id", target = "parentId")
     CategoryResponse mapCategoryToCategoryResponse(Category category);
 
 

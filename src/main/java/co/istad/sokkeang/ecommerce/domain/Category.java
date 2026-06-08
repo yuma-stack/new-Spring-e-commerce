@@ -28,9 +28,13 @@ public class Category {
 
     //set join (join self relationship)
     @ManyToOne
+    @JoinColumn(name = "parent_id")
     private Category parentCategory;
 
     //one category have many product, Use Bidirectional (khang Product kr mean)
     @OneToMany (mappedBy = "category")
     private List<Product> products;
+
+    @OneToMany(mappedBy = "parentCategory",cascade = CascadeType.REMOVE)
+    private List<Category> childCategories;
 }

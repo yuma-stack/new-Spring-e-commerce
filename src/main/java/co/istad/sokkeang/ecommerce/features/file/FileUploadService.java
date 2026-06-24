@@ -7,7 +7,19 @@ import java.util.List;
 
 
 public interface FileUploadService {
+
     FileUploadResponse upload(MultipartFile file);
 
+    /**
+     * Upload multiple files
+     * @param files is a list for multiple upload
+     * @return list of {@link FileUploadResponse }
+     */
     List<FileUploadResponse> upload(List<MultipartFile> files);
+
+    /**
+     *
+     * @param name we deleted using file name
+     */
+    void deleteByName(String name);
 }

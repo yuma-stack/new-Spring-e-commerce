@@ -62,11 +62,10 @@ public class FileUploadServiceImpl implements FileUploadService{
 
         for (MultipartFile file : files) {
 
-
             String name = UUID.randomUUID().toString();
 
-            String originalFilename = file.getOriginalFilename();
-            String ext = originalFilename.substring(originalFilename.lastIndexOf(".") + 1);
+            String ext = file.getOriginalFilename()
+                    .substring(file.getOriginalFilename().lastIndexOf(".") + 1);
 
             name += "." + ext;
 
@@ -92,5 +91,25 @@ public class FileUploadServiceImpl implements FileUploadService{
         }
 
         return responses;
+    }
+
+    @Override
+    public void deleteByName(String name) {
+        Path path = Paths.get(storageLocation + name);
+        try {
+            if (!Files.exists(path)) {
+                throw new ResponseStatusException(
+                        HttpStatus.NOT_FOUND,
+                        "File not found"
+                );
+            }
+            Files.delete(path);
+
+        } catch (IOException e) {
+            throw new ResponseStatusException(
+                    HttpStatus.INTERNAL_SERVER_ERROR,
+                    "Failed to delete file"
+            );
+        }
     }
 }

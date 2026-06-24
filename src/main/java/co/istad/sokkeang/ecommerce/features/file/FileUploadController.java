@@ -32,7 +32,7 @@ public class FileUploadController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{name}")
     public void deleteByName(@PathVariable String name){
-
+        fileUploadService.deleteByName(name);
     }
 
 

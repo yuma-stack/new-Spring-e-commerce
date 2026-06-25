@@ -1,11 +1,11 @@
 file:
   client-path: /file
-  storage-location: C:\Users\liep sokkeang\Desktop\Spring_ITE\ite-file\
+  storage-location: C:\Users\Administrator\Desktop\wallpaper-for-pc\
   base-uri: http://localhost:${server:port}${file:client-path}
 spring:
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop
     show-sql: true
     properties:
       hibernate:
@@ -18,4 +18,4 @@ spring:
   application:
     name: ite-3rd-ecommerce
 server:
-  port: 8888
+  port: 9916
